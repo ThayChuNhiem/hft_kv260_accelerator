@@ -1,10 +1,11 @@
-# Vivado & Xilinx FPGA artifacts
+# Vivado build & log files
 *.jou
 *.log
 *.str
 .Xil/
 project_1/
 sim_proj*/
+hft_kv260_build/
 *.bit
 *.hdf
 *.xsa
