@@ -4,6 +4,7 @@
 *.str
 .Xil/
 project_1/
+sim_proj/
 *.bit
 *.hdf
 *.xsa
