@@ -60,8 +60,11 @@ kv260_hft_accelerator/
 | 12 | `ouch_formatter.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/ouch_formatter/ouch_formatter.sv) | SystemVerilog Formatter: Đóng gói lệnh OUCH 4.2 ('O') 49 Bytes truyền ra AXI-Stream trong $35\text{ ns}$ |
 | 13 | `tb_ouch_formatter.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_ouch_formatter.sv) | Testbench kiểm thử phát lệnh OUCH 4.2 và giải mã stream 64-bit |
 | 14 | `sim_ouch.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_ouch.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng OUCH Formatter |
-| 15 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
-| 16 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ và cây thư mục chi tiết (Đã cập nhật) |
+| 15 | `hft_top.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/hft_top.sv) | SystemVerilog Top Level Wrapper: Đấu nối trọn gói toàn bộ pipeline phần cứng Network In -> ITCH -> Matching -> OUCH -> Network Out |
+| 16 | `tb_hft_top.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_hft_top.sv) | Full Integrated System Testbench: Đo đạc thời gian Tick-to-Trade Latency chuẩn nanoseconds |
+| 17 | `sim_top.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_top.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng toàn bộ luồng hft_top.sv |
+| 18 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
+| 19 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ và cây thư mục chi tiết (Đã cập nhật 100% Giai đoạn 2) |
 
 ---
 
@@ -83,7 +86,7 @@ kv260_hft_accelerator/
   - Dùng BRAM/URAM trên FPGA để quản lý Sổ lệnh L3/L2 (Limit Order Book).
   - Cập nhật giá Bid/Ask tốt nhất (Best Bid and Offer - BBO) trong $\le 2$ chu kỳ clock ($10\text{ ns}$). *(ĐÃ HOÀN THÀNH 100%)*
 - [x] **Tuần 6**: Thiết kế [ouch_formatter.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/ouch_formatter/ouch_formatter.sv) và Testbench [tb_ouch_formatter.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_ouch_formatter.sv): Đóng gói lệnh OUCH 4.2 ('O') gửi trả ngược ra mạng khi chiến lược kích hoạt trong $35\text{ ns}$. *(ĐÃ HOÀN THÀNH 100%)*
-- [ ] **Tuần 7**: Mô phỏng toàn bộ luồng phần cứng: `Network In -> ITCH Parser -> Matching Engine -> OUCH Out`.
+- [x] **Tuần 7**: Mô phỏng toàn bộ luồng phần cứng: `Network In -> ITCH Parser -> Matching Engine -> OUCH Out` qua Top Module [hft_top.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/hft_top.sv) và Testbench [tb_hft_top.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_hft_top.sv). *(ĐÃ HOÀN THÀNH 100%)*
 
 ---
 
