@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  --include "../../../../../../../../../../App/AMD/2026.1/Vivado/data/rsb/busdef" \
+"../../../../../../src/common/hft_pkg.sv" \
+"../../../../../../src/itch_parser/itch_parser.sv" \
+"../../../../../../tb/tb_itch_parser_full.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
