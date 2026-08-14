@@ -232,4 +232,24 @@ package hft_pkg;
         logic [31:0] spread;             // Ask Price - Bid Price
     } bbo_event_t;
 
+    // ------------------------------------------------------------------------
+    // NASDAQ OUCH 4.2 ENTER ORDER MESSAGE STRUCT (49 Bytes - Raw Wire Format)
+    // ------------------------------------------------------------------------
+    typedef struct packed {
+        logic [7:0]   msg_type;       // 'O' (0x4F) Enter Order
+        logic [111:0] order_token;    // 14-byte ASCII Order Token (e.g. "ORDTOK00000001")
+        logic [7:0]   buy_sell;       // 'B' (Buy) or 'S' (Sell)
+        logic [31:0]  shares;         // Quantity (Big-Endian)
+        logic [63:0]  stock;          // 8-byte ASCII Stock Symbol
+        logic [31:0]  price;          // Price fixed point (Big-Endian)
+        logic [31:0]  time_in_force;  // Time in force (0 = IOC, 99999 = DAY)
+        logic [31:0]  firm;           // 4-byte ASCII Firm ID (e.g. "HFT1")
+        logic [7:0]   display;        // 'Y' (Displayed) or 'N' (Non-displayed)
+        logic [7:0]   capacity;       // 'A' (Agency) or 'P' (Principal)
+        logic [7:0]   iso_eligibility;// 'Y' or 'N' (Intermarket Sweep Eligibility)
+        logic [31:0]  min_quantity;   // Minimum execution quantity
+        logic [7:0]   cross_type;     // 'N' (Continuous Market)
+        logic [7:0]   customer_type;  // 'N' (Default)
+    } ouch_enter_order_t;
+
 endpackage : hft_pkg

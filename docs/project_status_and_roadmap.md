@@ -57,8 +57,11 @@ kv260_hft_accelerator/
 | 9 | `itch_data_dump.mem` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/itch_data_dump.mem) | Mảng dữ liệu Hex 64-bit của gói MoldUDP64/ITCH 5.0 nạp vào XSIM |
 | 10 | `sim_parser.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_parser.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng ITCH Parser |
 | 11 | `sim_matching.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_matching.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng Matching Engine |
-| 12 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
-| 13 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ và cây thư mục chi tiết (File này) |
+| 12 | `ouch_formatter.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/ouch_formatter/ouch_formatter.sv) | SystemVerilog Formatter: Đóng gói lệnh OUCH 4.2 ('O') 49 Bytes truyền ra AXI-Stream trong $35\text{ ns}$ |
+| 13 | `tb_ouch_formatter.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_ouch_formatter.sv) | Testbench kiểm thử phát lệnh OUCH 4.2 và giải mã stream 64-bit |
+| 14 | `sim_ouch.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_ouch.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng OUCH Formatter |
+| 15 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
+| 16 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ và cây thư mục chi tiết (Đã cập nhật) |
 
 ---
 
@@ -79,7 +82,7 @@ kv260_hft_accelerator/
 - [x] **Tuần 4 - 5**: Thiết kế [matching_engine.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/matching_engine/matching_engine.sv) và Testbench [tb_matching_engine.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_matching_engine.sv):
   - Dùng BRAM/URAM trên FPGA để quản lý Sổ lệnh L3/L2 (Limit Order Book).
   - Cập nhật giá Bid/Ask tốt nhất (Best Bid and Offer - BBO) trong $\le 2$ chu kỳ clock ($10\text{ ns}$). *(ĐÃ HOÀN THÀNH 100%)*
-- [ ] **Tuần 6**: Thiết kế `ouch_formatter.sv` trong [hw/src/ouch_formatter/](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/ouch_formatter/): Đóng gói lệnh OUCH 4.2 để gửi trả ngược ra mạng khi chiến lược kích hoạt.
+- [x] **Tuần 6**: Thiết kế [ouch_formatter.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/ouch_formatter/ouch_formatter.sv) và Testbench [tb_ouch_formatter.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_ouch_formatter.sv): Đóng gói lệnh OUCH 4.2 ('O') gửi trả ngược ra mạng khi chiến lược kích hoạt trong $35\text{ ns}$. *(ĐÃ HOÀN THÀNH 100%)*
 - [ ] **Tuần 7**: Mô phỏng toàn bộ luồng phần cứng: `Network In -> ITCH Parser -> Matching Engine -> OUCH Out`.
 
 ---
