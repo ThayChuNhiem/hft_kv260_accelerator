@@ -128,8 +128,11 @@ kv260_hft_accelerator/
 | 19 | `emio_eth_wrapper.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/network/emio_eth_wrapper.sv) | SystemVerilog Pin Routing Wrapper đưa luồng AXI-Stream Ethernet từ PL sang cổng EMIO / PMOD của KV260 |
 | 20 | `tb_network_top.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_network_top.sv) | Testbench kiểm thử truyền nhận qua phần cứng Ethernet UDP/IP stack và EMIO Routing |
 | 21 | `sim_network.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_network.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng UDP/IP Stack & EMIO Routing |
-| 22 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
-| 23 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ, khung bài báo Q1/Q2 và cây thư mục chi tiết (Đã cập nhật Tuần 8) |
+| 22 | `axi_dma_telemetry_intf.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/dma_intf/axi_dma_telemetry_intf.sv) | SystemVerilog AXI DMA Telemetry Logging Interface đóng gói bản ghi 34-byte thành AXI4-Stream truyền sang PS DRAM |
+| 23 | `tb_dma_telemetry.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_dma_telemetry.sv) | Testbench kiểm thử truyền nhận gói tin telemetry DMA qua AXI4-Stream |
+| 24 | `sim_dma.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_dma.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng AXI DMA Telemetry Interface |
+| 25 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
+| 26 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ, khung bài báo Q1/Q2 và cây thư mục chi tiết (Đã cập nhật Tuần 9) |
 
 ---
 
@@ -159,7 +162,7 @@ kv260_hft_accelerator/
 > **Mục tiêu**: Tổng hợp Hardware trên Vivado và tích hợp giao tiếp với ARM Processor.
 
 - [x] **Tuần 8**: Tích hợp IP [udp_ip_stack.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/network/udp_ip_stack.sv), [emio_eth_wrapper.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/network/emio_eth_wrapper.sv), Testbench [tb_network_top.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_network_top.sv) và Script [sim_network.tcl](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_network.tcl): Cấu hình EMIO Routing đưa tín hiệu Ethernet xuống cổng mở rộng PMOD / IO của KV260. *(ĐÃ HOÀN THÀNH 100%)*
-- [ ] **Tuần 9**: Tích hợp IP **Xilinx AXI DMA** và **AXI SmartConnect** để kết nối đường Telemetry Logging từ PL sang DRAM của PS.
+- [x] **Tuần 9**: Tích hợp IP [axi_dma_telemetry_intf.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/dma_intf/axi_dma_telemetry_intf.sv), Testbench [tb_dma_telemetry.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_dma_telemetry.sv) và Script [sim_dma.tcl](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_dma.tcl): Kết nối đường Telemetry Logging AXI4-Stream từ PL sang AXI DMA & AXI SmartConnect đưa dữ liệu nhật ký giao dịch sang DRAM của PS. *(ĐÃ HOÀN THÀNH 100%)*
 - [ ] **Tuần 10**: Hoàn thiện Vivado Tcl Script `build_project.tcl` và file chân `.xdc` để tự động hóa quá trình Synthesize, Place & Route, tạo file Bitstream (`.bit`) và Hardware Definition (`.hwh`).
 
 ---
