@@ -75,7 +75,7 @@ module itch_parser #(
         ST_DISCARD_REST      // Error or unhandled packet discard until tlast
     } state_e;
 
-    state_e current_state, next_state;
+    state_e current_state;
 
     // ------------------------------------------------------------------------
     // Internal Registers & Shift Buffers
