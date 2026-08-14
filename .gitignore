@@ -1,0 +1,47 @@
+# Vivado & Xilinx FPGA artifacts
+*.jou
+*.log
+*.str
+.Xil/
+project_1/
+*.bit
+*.hdf
+*.xsa
+*.hwh
+*.dcp
+*.sysdef
+
+# Vivado HLS & Vitis
+.metadata/
+*.bin
+
+# C/C++ compilation outputs
+*.o
+*.so
+*.a
+*.exe
+build/
+bin/
+
+# Python & Jupyter Notebooks
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# LaTeX build outputs
+docs/ieee_paper/*.aux
+docs/ieee_paper/*.bbl
+docs/ieee_paper/*.blg
+docs/ieee_paper/*.fdb_latexmk
+docs/ieee_paper/*.fls
+docs/ieee_paper/*.out
+docs/ieee_paper/*.synctex.gz
+docs/ieee_paper/*.toc
+docs/ieee_paper/*.log
+
+# OS & IDE specific
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
