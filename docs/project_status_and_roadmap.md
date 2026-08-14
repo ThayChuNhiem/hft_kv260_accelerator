@@ -124,8 +124,12 @@ kv260_hft_accelerator/
 | 15 | `sim_matching.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_matching.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng Matching Engine |
 | 16 | `sim_ouch.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_ouch.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng OUCH Formatter |
 | 17 | `sim_top.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_top.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng toàn bộ luồng hft_top.sv |
-| 18 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
-| 19 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ, khung bài báo Q1/Q2 và cây thư mục chi tiết (Đã cập nhật) |
+| 18 | `udp_ip_stack.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/network/udp_ip_stack.sv) | Hardware Ethernet UDP/IP Encoder/Decoder core giải mã/đóng gói header Ethernet+IPv4+UDP |
+| 19 | `emio_eth_wrapper.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/network/emio_eth_wrapper.sv) | SystemVerilog Pin Routing Wrapper đưa luồng AXI-Stream Ethernet từ PL sang cổng EMIO / PMOD của KV260 |
+| 20 | `tb_network_top.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_network_top.sv) | Testbench kiểm thử truyền nhận qua phần cứng Ethernet UDP/IP stack và EMIO Routing |
+| 21 | `sim_network.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_network.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng UDP/IP Stack & EMIO Routing |
+| 22 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
+| 23 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ, khung bài báo Q1/Q2 và cây thư mục chi tiết (Đã cập nhật Tuần 8) |
 
 ---
 
@@ -154,7 +158,7 @@ kv260_hft_accelerator/
 #### 🟡 GIAI ĐOẠN 3: Tích Hợp EMIO Ethernet, AXI DMA & Vivado Block Design (Tuần 8 – Tuần 10)
 > **Mục tiêu**: Tổng hợp Hardware trên Vivado và tích hợp giao tiếp với ARM Processor.
 
-- [ ] **Tuần 8**: Tích hợp IP `verilog-ethernet` (MAC + UDP/IP stack) vào RTL. Cấu hình **EMIO Routing** đưa tín hiệu Ethernet xuống cổng mở rộng PMOD / IO của KV260.
+- [x] **Tuần 8**: Tích hợp IP [udp_ip_stack.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/network/udp_ip_stack.sv), [emio_eth_wrapper.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/network/emio_eth_wrapper.sv), Testbench [tb_network_top.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_network_top.sv) và Script [sim_network.tcl](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_network.tcl): Cấu hình EMIO Routing đưa tín hiệu Ethernet xuống cổng mở rộng PMOD / IO của KV260. *(ĐÃ HOÀN THÀNH 100%)*
 - [ ] **Tuần 9**: Tích hợp IP **Xilinx AXI DMA** và **AXI SmartConnect** để kết nối đường Telemetry Logging từ PL sang DRAM của PS.
 - [ ] **Tuần 10**: Hoàn thiện Vivado Tcl Script `build_project.tcl` và file chân `.xdc` để tự động hóa quá trình Synthesize, Place & Route, tạo file Bitstream (`.bit`) và Hardware Definition (`.hwh`).
 
