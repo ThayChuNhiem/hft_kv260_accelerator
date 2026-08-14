@@ -133,8 +133,10 @@ kv260_hft_accelerator/
 | 24 | `sim_dma.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_dma.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng AXI DMA Telemetry Interface |
 | 25 | `kria_kv260.xdc` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/constraints/kria_kv260.xdc) | File gán chân pin và ràng buộc thời gian 200MHz (5.0ns) cho kit Kria KV260 |
 | 26 | `build_project.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/build_project.tcl) | Vivado Tcl script tự động hóa tổng hợp Synthesize, Place & Route, tạo file Bitstream (.bit) và .xsa |
-| 27 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
-| 28 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ, khung bài báo Q1/Q2 và cây thư mục chi tiết (Đã cập nhật 100% Giai đoạn 3) |
+| 27 | `tb_hft_master_system.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_hft_master_system.sv) | **Master Comprehensive Testbench**: Kiểm thử toàn bộ hệ thống từ Ethernet PHY RX -> UDP/IP -> ITCH -> Order Book -> OUCH -> PHY TX + AXI DMA Logging |
+| 28 | `sim_master.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_master.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng Master Testbench toàn hệ thống |
+| 29 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
+| 30 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ, khung bài báo Q1/Q2 và cây thư mục chi tiết (Đã bổ sung Master Testbench) |
 
 ---
 
