@@ -5,6 +5,26 @@
 
 ---
 
+## 💡 ỨNG DỤNG CHIẾN LƯỢC HFT & CÁC KỊCH BẢN THỰC THI
+
+Kiến trúc phần cứng Data Path ([hft_top.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/hft_top.sv)) trên Kria KV260 đạt độ trễ siêu tốc **$105\text{ ns}$**, đóng vai trò là một **Khung Tăng Tốc HFT Đa Chiến Lược (Multi-Strategy HFT Accelerator Framework)** hỗ trợ 4 kịch bản giao dịch thực tế:
+
+1. **Cross-Venue Latency Arbitrage (Kinh doanh chênh lệch giá liên sàn)**:
+   - **Cơ chế**: Phát hiện cơ hội $P_{\text{Bid}} \ge P_{\text{Ask}}$ giữa các sàn giao dịch (NASDAQ, NYSE, BATS) do chênh lệch độ trễ cáp quang.
+   - **Thực thi**: Tự động bắn lệnh Mua bên sàn rẻ ($P_{\text{Ask}}$) và Bán bên sàn đắt ($P_{\text{Bid}}$) thu lợi nhuận không rủi ro trong $105\text{ ns}$.
+
+2. **High-Frequency Market Making (Tạo thanh khoản siêu tốc)**:
+   - **Cơ chế**: Đặt đồng thời cả lệnh Mua ($P_{\text{Bid}}$) và Bán ($P_{\text{Ask}}$) ở 2 đầu sổ lệnh để thu lợi nhuận từ chênh lệch Spread ($P_{\text{Ask}} - P_{\text{Bid}}$) và tiền thưởng tạo thanh khoản (Maker Rebates).
+   - **Bảo vệ Rủi ro**: Khi nhận biến động xấu từ `itch_parser`, FPGA gửi lệnh **rút lệnh phần cứng (`'X'`/`'U'`) trong $25\text{ ns}$** để tránh bị khớp ở giá hớ (Adverse Selection Protection).
+
+3. **Momentum Ignition & Order Flow Toxicity (Đón đầu luồng lệnh lớn)**:
+   - **Cơ chế**: Khi `itch_parser` phát hiện khối lượng lệnh mua gom khổng lồ (Institutional Order Sweep) vừa nạp vào sổ lệnh, FPGA phát hiện ở $30\text{ ns}$ đầu tiên và phát lệnh Mua đón đầu trước khi giá bị đẩy lên cao.
+
+4. **Ultra-Fast Emergency Risk Check & Cancel All (Rút lệnh khẩn cấp)**:
+   - **Cơ chế**: Khi đường mạng gặp sự cố hoặc tin tức đảo chiều bất ngờ, FPGA cho phép gửi hàng loạt lệnh hủy OUCH 4.2 (`'X'`) trong $< 100\text{ ns}$, bảo vệ tài khoản khỏi các khoản lỗ lớn.
+
+---
+
 ## 🗂️ CẤU TRÚC THƯ MỤC CHI TIẾT ĐẾN TỪNG FILE & CÔNG DỤNG
 
 ```text
