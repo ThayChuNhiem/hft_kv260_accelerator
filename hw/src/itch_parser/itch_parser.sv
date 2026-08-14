@@ -135,9 +135,15 @@ module itch_parser #(
                 // ------------------------------------------------------------
                 ST_MOLD_HDR_1: begin
                     if (s_axis_tvalid) begin
-                        mold_hdr_reg.session[15:0]       <= s_axis_tdata[63:48];
-                        mold_hdr_reg.sequence_number[63:16] <= s_axis_tdata[47:0];
-                        current_state                    <= ST_MOLD_HDR_2;
+                        if (s_axis_tlast) begin
+                            // Premature packet truncation error
+                            err_cnt_reg   <= err_cnt_reg + 1'b1;
+                            current_state <= ST_IDLE;
+                        end else begin
+                            mold_hdr_reg.session[15:0]          <= s_axis_tdata[63:48];
+                            mold_hdr_reg.sequence_number[63:16] <= s_axis_tdata[47:0];
+                            current_state                       <= ST_MOLD_HDR_2;
+                        end
                     end
                 end
 
@@ -146,20 +152,26 @@ module itch_parser #(
                 // ------------------------------------------------------------
                 ST_MOLD_HDR_2: begin
                     if (s_axis_tvalid) begin
-                        mold_hdr_reg.sequence_number[15:0] <= s_axis_tdata[63:48];
-                        mold_hdr_reg.message_count         <= swap16(s_axis_tdata[47:32]);
-                        remaining_mold_msgs                <= swap16(s_axis_tdata[47:32]);
-                        pkt_cnt_reg                        <= pkt_cnt_reg + 1'b1;
+                        if (s_axis_tlast) begin
+                            // Premature packet truncation error
+                            err_cnt_reg   <= err_cnt_reg + 1'b1;
+                            current_state <= ST_IDLE;
+                        end else begin
+                            mold_hdr_reg.sequence_number[15:0] <= s_axis_tdata[63:48];
+                            mold_hdr_reg.message_count         <= swap16(s_axis_tdata[47:32]);
+                            remaining_mold_msgs                <= swap16(s_axis_tdata[47:32]);
+                            pkt_cnt_reg                        <= pkt_cnt_reg + 1'b1;
 
-                        // Next 2 bytes (s_axis_tdata[31:16]) contain first ITCH msg length
-                        current_msg_len                    <= swap16(s_axis_tdata[31:16]);
-                        
-                        // Buffer remaining 2 bytes (s_axis_tdata[15:0])
-                        byte_buffer[511:496]               <= s_axis_tdata[15:0];
-                        buffer_count                       <= 8'd2;
-                        msg_bytes_received                 <= 8'd2;
+                            // Next 2 bytes (s_axis_tdata[31:16]) contain first ITCH msg length
+                            current_msg_len                    <= swap16(s_axis_tdata[31:16]);
+                            
+                            // Buffer remaining 2 bytes (s_axis_tdata[15:0])
+                            byte_buffer[511:496]               <= s_axis_tdata[15:0];
+                            buffer_count                       <= 8'd2;
+                            msg_bytes_received                 <= 8'd2;
 
-                        current_state                      <= ST_PARSE_MSG_BODY;
+                            current_state                      <= ST_PARSE_MSG_BODY;
+                        end
                     end
                 end
 
