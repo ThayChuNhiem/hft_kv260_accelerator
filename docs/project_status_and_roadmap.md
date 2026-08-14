@@ -48,14 +48,17 @@ kv260_hft_accelerator/
 | :---: | :--- | :--- | :--- |
 | 1 | `.gitignore` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/.gitignore) | Loại bỏ các file trung gian Vivado, Vitis, C++, Python, LaTeX khỏi Git |
 | 2 | `README.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/README.md) | Tài liệu hướng dẫn tổng quan kiến trúc dự án |
-| 3 | `hft_pkg.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/common/hft_pkg.sv) | SystemVerilog Package: Chứa Struct MoldUDP64, 10 loại Struct ITCH 5.0 và Enums |
+| 3 | `hft_pkg.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/common/hft_pkg.sv) | SystemVerilog Package: Chứa MoldUDP64 Struct, 10 loại ITCH 5.0 Struct, BBO Struct và Enums |
 | 4 | `itch_parser.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/itch_parser/itch_parser.sv) | SystemVerilog FSM Parser: Giải mã luồng AXI-Stream 64-bit, lật Endianness |
-| 5 | `tb_itch_parser.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_itch_parser.sv) | Testbench đơn vị (Unit Test) cho bộ giải mã ITCH 5.0 |
-| 6 | `tb_itch_parser_full.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_itch_parser_full.sv) | Testbench tự kiểm tra toàn diện 10 loại message ITCH 5.0 từ file `.mem` |
-| 7 | `itch_data_dump.mem` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/itch_data_dump.mem) | Mảng dữ liệu Hex 64-bit của gói MoldUDP64/ITCH 5.0 nạp vào XSIM |
-| 8 | `sim_parser.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_parser.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng XSIM |
-| 9 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
-| 10 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ và cây thư mục chi tiết (File này) |
+| 5 | `matching_engine.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/matching_engine/matching_engine.sv) | SystemVerilog Matching Engine: Quản lý sổ lệnh L3/L2 trên BRAM/URAM, cập nhật BBO $\le 2$ cycles ($10\text{ ns}$) |
+| 6 | `tb_itch_parser.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_itch_parser.sv) | Testbench đơn vị (Unit Test) cho bộ giải mã ITCH 5.0 |
+| 7 | `tb_itch_parser_full.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_itch_parser_full.sv) | Testbench tự kiểm tra toàn diện 10 loại message ITCH 5.0 từ file `.mem` |
+| 8 | `tb_matching_engine.sv` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_matching_engine.sv) | Testbench kiểm thử BBO Top-of-Book và tín hiệu Trade Trigger cho Matching Engine |
+| 9 | `itch_data_dump.mem` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/itch_data_dump.mem) | Mảng dữ liệu Hex 64-bit của gói MoldUDP64/ITCH 5.0 nạp vào XSIM |
+| 10 | `sim_parser.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_parser.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng ITCH Parser |
+| 11 | `sim_matching.tcl` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/scripts/sim_matching.tcl) | Vivado Tcl script tự động hóa chạy mô phỏng Matching Engine |
+| 12 | `pcap_to_hex.py` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/sw/scripts/pcap_to_hex.py) | Tool Python bóc tách UDP payload từ file PCAP Wireshark xuất ra `.mem` |
+| 13 | `project_status_and_roadmap.md` | [file](file:///d:/2026/FPGA/hft_kv260_accelerator/docs/project_status_and_roadmap.md) | File báo cáo tiến độ và cây thư mục chi tiết (File này) |
 
 ---
 
