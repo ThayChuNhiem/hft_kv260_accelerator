@@ -219,4 +219,17 @@ package hft_pkg;
         logic [7:0]  reserved;           // Padding / Status flags
     } hft_telemetry_log_t;
 
+    // ------------------------------------------------------------------------
+    // BEST BID AND OFFER (BBO) TOP-OF-BOOK STRUCT
+    // ------------------------------------------------------------------------
+    typedef struct packed {
+        logic        valid;              // Pulse indicating BBO update
+        logic [15:0] stock_locate;       // Stock locate ID
+        logic [31:0] best_bid_price;     // Highest Buy Price
+        logic [31:0] best_bid_shares;    // Volume at Best Buy Price
+        logic [31:0] best_ask_price;     // Lowest Sell Price
+        logic [31:0] best_ask_shares;    // Volume at Best Sell Price
+        logic [31:0] spread;             // Ask Price - Bid Price
+    } bbo_event_t;
+
 endpackage : hft_pkg

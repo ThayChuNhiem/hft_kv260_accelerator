@@ -73,9 +73,9 @@ kv260_hft_accelerator/
 #### 🟢 GIAI ĐOẠN 2: Xây Dựng Order Book, Matching Engine & OUCH Formatter (Tuần 4 – Tuần 7)
 > **Mục tiêu**: Xử lý logic sổ lệnh và phát sinh gói tin đặt lệnh (Order Entry) phần cứng.
 
-- [ ] **Tuần 4 - 5**: Thiết kế `matching_engine.sv` trong [hw/src/matching_engine/](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/matching_engine/):
+- [x] **Tuần 4 - 5**: Thiết kế [matching_engine.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/matching_engine/matching_engine.sv) và Testbench [tb_matching_engine.sv](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/tb/tb_matching_engine.sv):
   - Dùng BRAM/URAM trên FPGA để quản lý Sổ lệnh L3/L2 (Limit Order Book).
-  - Cập nhật giá Bid/Ask tốt nhất (Best Bid and Offer - BBO) trong $\le 2$ chu kỳ clock.
+  - Cập nhật giá Bid/Ask tốt nhất (Best Bid and Offer - BBO) trong $\le 2$ chu kỳ clock ($10\text{ ns}$). *(ĐÃ HOÀN THÀNH 100%)*
 - [ ] **Tuần 6**: Thiết kế `ouch_formatter.sv` trong [hw/src/ouch_formatter/](file:///d:/2026/FPGA/hft_kv260_accelerator/hw/src/ouch_formatter/): Đóng gói lệnh OUCH 4.2 để gửi trả ngược ra mạng khi chiến lược kích hoạt.
 - [ ] **Tuần 7**: Mô phỏng toàn bộ luồng phần cứng: `Network In -> ITCH Parser -> Matching Engine -> OUCH Out`.
 
